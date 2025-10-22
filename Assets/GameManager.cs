@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static int corridorCount = 0;
-    public static int maxCorridors = 20;
+    public int corridorCount = 0;
+    public int maxCorridors = 20;
+    public Transform corridorContainer;
 }
