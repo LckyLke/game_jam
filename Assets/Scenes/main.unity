@@ -653,10 +653,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerCamera: {fileID: 1906130624}
-  moveSpeed: 5
+  walkSpeed: 5
+  sprintSpeed: 8
+  crouchSpeed: 5
   mouseSensitivity: 2
   gravity: 9.81
-  jumpHeight: 20
+  jumpHeight: 2
 --- !u!143 &2051518175
 CharacterController:
   m_ObjectHideFlags: 0

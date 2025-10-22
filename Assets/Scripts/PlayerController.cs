@@ -1,139 +1,155 @@
 // PlayerController.cs
-// Unity 2021+ | Input System package
+// Unity 2021+ | works with Legacy Input; set Input Handling = Both
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-	[Header("Refernces")]
-	private CharacterController controller;
+    [Header("References")]
+    private CharacterController controller;
+    [SerializeField] private Camera playerCamera;
 
-	[SerializeField] private Camera playerCamera;
+    [Header("Movement Settings")]
+    private float moveSpeed;
+    public float walkSpeed = 10f;
+    public float sprintSpeed = 20f;
 
-	[Header("Movement Settings")]
-	[SerializeField] private float moveSpeed = 5f;
-	[SerializeField] private float mouseSensitivity = 2f;
+    [Header("Crouching")]
+    public float crouchSpeed = 5f;
+	public float crouchYScale = 0.5f;
+	private float startYScale;
 
-	[SerializeField] private float gravity = 9.81f;
+    public enum MovementState { walking, sprinting, air, crouching }
+    private MovementState state;
 
-	[SerializeField] private float jumpHeight = 20f;
+    [SerializeField] private float mouseSensitivity = 2f;
+    [SerializeField] private float gravity = 9.81f;   
+    [SerializeField] private float jumpHeight = 2.0f; 
 
-	private float verticalVelocity; 
+    private float verticalVelocity;
+    private float xRotation = 0f;
 
-	private float xRotation = 0f;
+    [Header("Inputs")]
+    private float moveInput;
+    private float sideInput;
 
-	[SerializeField] private float sneakSpeed = 3f;
-	[SerializeField] private float normalHeight = 1f;
-	[SerializeField] private float sneakHeight = .5f;
+    private void Awake()
+    {
+        controller = GetComponent<CharacterController>();
+        moveSpeed = walkSpeed; 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+		startYScale = transform.localScale.y; 
+    }
 
-	private bool isSneaking = false;
+    private void Update()
+    {
+        StateHandler();
+        InputManagement();
+        Movement();
+    }
 
-	[Header("Inputs")]
-	private float moveInput;
-	private float sideInput;
+    private void Movement()
+    {
+        GroundMovement();
+        MouseInput();
+        MouseGoInWindow();
+    }
 
-	private void Awake()
-	{
-		controller = GetComponent<CharacterController>();
-		
-	}
+    private void GroundMovement()
+    {
+        Vector3 moveXZ = (transform.right * sideInput + transform.forward * moveInput) * moveSpeed;
 
-	private void Update()
-	{
-		InputManagement();
-		Movement();
-	}
+        verticalVelocity = VerticalForceCalculation();
 
-	private void Movement()
-	{
-		GroundMovement();
-	}
-	private void GroundMovement()
-	{
-		Vector3 move = new Vector3(sideInput, 0, moveInput);
-		move = transform.TransformDirection(move);
+        Vector3 move = new Vector3(moveXZ.x, verticalVelocity, moveXZ.z);
+        controller.Move(move * Time.deltaTime);
+    }
 
-		// Sprint
-		if (Input.GetKey(KeyCode.LeftShift) && !isSneaking)
-			move *= moveSpeed * 5;
-		else if (isSneaking)
-			move *= sneakSpeed;
-		else
-			move *= moveSpeed;
+    private void StateHandler()
+    {
+		bool grounded = controller.isGrounded;
 
-		// Sneak toggle
-		if (Input.GetKey(KeyCode.LeftControl))
+		if (Input.GetKey(KeyCode.LeftControl) && state != MovementState.air)
 		{
-			if (!isSneaking)
-			{
-				isSneaking = true;
-				controller.height = sneakHeight;
-			}
-		}
-		else
-		{
-			if (isSneaking)
-			{
-				isSneaking = false;
-				controller.height = normalHeight;
-			}
+			state = MovementState.crouching;
+			moveSpeed = crouchSpeed;
 		}
 
-		move.y = VerticalForceCalculation();
-		controller.Move(move * Time.deltaTime);
-
-		MouseInput();
-		MouseGoInWindow();
-}
-	
-	private void InputManagement()
-	{
-		moveInput = Input.GetAxis("Vertical");
-		sideInput = Input.GetAxis("Horizontal");
-	}
-	private void MouseInput()
-	{
-		float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-		float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
-
-		// Rotate player around Y axis
-		transform.Rotate(Vector3.up * mouseX);
-
-		// Apply vertical look rotation with clamp
-		xRotation -= mouseY;
-		xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-		playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-	}
-
-	private float VerticalForceCalculation()
-	{
-		if (controller.isGrounded)
-		{
-			verticalVelocity = -1f;
-
-			if (Input.GetButtonDown("Jump"))
-			{
-				verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
-			}
-			return verticalVelocity;
-		} 
-		verticalVelocity -= gravity * Time.deltaTime;
-		return verticalVelocity;
-	}	
-
-	private void MouseGoInWindow()
-	{
-		if (Input.GetMouseButtonDown(0))
+        else if (grounded && Input.GetKey(KeyCode.LeftShift))
         {
-            Cursor.lockState = CursorLockMode.Locked; // locks cursor to game window
-            Cursor.visible = false;                   // hides it
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        else if (grounded)
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            state = MovementState.air;
+        }
+    }
+
+    private void InputManagement()
+    {
+        moveInput = Input.GetAxisRaw("Vertical");
+		sideInput = Input.GetAxisRaw("Horizontal");
+
+		if (Input.GetKeyDown(KeyCode.LeftControl) && state != MovementState.air)
+		{
+			transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+			controller.Move(Vector3.down * 100f);
+		}
+		
+		if (Input.GetKeyUp(KeyCode.LeftControl))
+		{
+			transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+		}
+    }
+
+    private void MouseInput()
+    {
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        transform.Rotate(Vector3.up * mouseX);
+
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+    }
+
+    private float VerticalForceCalculation()
+    {
+        if (controller.isGrounded)
+        {
+            float v = -1f;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                v = Mathf.Sqrt(2f * gravity * Mathf.Max(0.01f, jumpHeight));
+            }
+            return v;
         }
 
+        verticalVelocity -= gravity * Time.deltaTime;
+        return verticalVelocity;
+    }
+
+    private void MouseGoInWindow()
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;   // unlocks cursor
-            Cursor.visible = true;                    // shows it again
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
-	}
-} 
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+}
