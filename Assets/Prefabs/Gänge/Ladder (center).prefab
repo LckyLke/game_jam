@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4142190830136395701}
   - component: {fileID: 7520134453347529124}
   - component: {fileID: 8932047133238343151}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6334870460495429906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ladder (center)
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -264,6 +264,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[8]'
+      value: 
+      objectReference: {fileID: 4516602149217566585}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[24]'
       value: 
       objectReference: {fileID: 4516602149217566585}
     m_RemovedComponents: []

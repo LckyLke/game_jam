@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4400162489325806625}
   - component: {fileID: 4026507519332094126}
   - component: {fileID: 6787183529812553470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 105671218986561673}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Slope (up)
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -202,6 +202,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[10]'
+      value: 
+      objectReference: {fileID: 4783088835113505272}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[11]'
+      value: 
+      objectReference: {fileID: 4783088835113505272}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[27]'
       value: 
       objectReference: {fileID: 4783088835113505272}
     m_RemovedComponents: []

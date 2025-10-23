@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6617721791931076192}
   - component: {fileID: 3000376141964998731}
   - component: {fileID: 4264290857750830650}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2368213781857177824}
   - component: {fileID: 7886832559210455746}
   - component: {fileID: 7676272843598580699}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4806457225819261439}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Connector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8792215759698052635}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: T (LR)
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}

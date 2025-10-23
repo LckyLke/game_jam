@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8712304386799713323}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Curve (small) (R)
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2050252700358361414}
   - component: {fileID: 2020135525874440824}
   - component: {fileID: 4808459011087058334}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,6 +206,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8548902305824179884}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[22]'
       value: 
       objectReference: {fileID: 8548902305824179884}
     m_RemovedComponents: []

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1984178227612673300}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ladder (wall)
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3606256939765358724}
   - component: {fileID: 6747978723517545992}
   - component: {fileID: 7111895361370873780}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +202,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[9]'
+      value: 
+      objectReference: {fileID: 144468483674338290}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[25]'
       value: 
       objectReference: {fileID: 144468483674338290}
     m_RemovedComponents: []

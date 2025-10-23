@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7255139765166405333}
   - component: {fileID: 5080172577239712227}
   - component: {fileID: 1712513309716149947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Serwers01_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5868461981782290287}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Connector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
