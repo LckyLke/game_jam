@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7255139765166405333}
   - component: {fileID: 5080172577239712227}
   - component: {fileID: 1712513309716149947}
+  - component: {fileID: 5513513303550875597}
   m_Layer: 3
   m_Name: Serwers01_001
   m_TagString: Untagged
@@ -113,6 +114,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 652844683688759915, guid: e3fbdde35282dae43afbc750717dcb0a, type: 3}
+--- !u!65 &5513513303550875597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180357139642704364}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.12955, y: 1.4278858, z: 6.1581264}
+  m_Center: {x: 0, y: 0.5694974, z: -1.1365387}
 --- !u!1 &7139170706603229344
 GameObject:
   m_ObjectHideFlags: 0

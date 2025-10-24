@@ -123,6 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6334870460495429906}
+  - component: {fileID: 5583337610981622934}
   m_Layer: 3
   m_Name: Ladder (center)
   m_TagString: Untagged
@@ -148,6 +149,27 @@ Transform:
   - {fileID: 3982996693987477746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5583337610981622934
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4516602149217566585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.13, y: 5.65, z: 12}
+  m_Center: {x: 0, y: 3.5, z: -6}
 --- !u!1001 &251361428209013992
 PrefabInstance:
   m_ObjectHideFlags: 0

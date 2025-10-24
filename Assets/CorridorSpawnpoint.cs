@@ -1,10 +1,26 @@
 using NUnit.Framework;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class CorridorSpawnpoint : MonoBehaviour
 {
+    public GameObject debugCube;
+    public GameObject debugCubeSpawnpoint;
+
+
+
+
+    Quaternion spawnRotation = new Quaternion();
+    Vector3 checkPosition;
+    Quaternion checkRotation;
+
+    Vector3 gizmoCenter, gizmoSize;
+
     enum Direction
     {
         North,
@@ -20,8 +36,10 @@ public class CorridorSpawnpoint : MonoBehaviour
 
     void Start()
     {
+        Instantiate(debugCubeSpawnpoint, transform.position, Quaternion.identity);
+
+
         //compute rotation
-        Quaternion spawnRotation = new Quaternion();
         switch (direction)
         {
             case Direction.North:
@@ -92,7 +110,7 @@ public class CorridorSpawnpoint : MonoBehaviour
     void BecomeDeadEnd()
     {
         transform.parent.GetComponentInParent<CorridorSpawnpoint>().SpawnCorridor(deadEndPrefab);
-        transform.parent.GetChild(0).gameObject.SetActive(false);
+        Destroy(transform.parent.gameObject);
     }
 
     void SpawnCorridor(GameObject corridorToSpawn)
@@ -100,38 +118,35 @@ public class CorridorSpawnpoint : MonoBehaviour
         switch (direction)
         {
             case Direction.North:
-                Instantiate(corridorToSpawn, transform.position, Quaternion.Euler(0f, 0f + transform.parent.eulerAngles.y, 0f), transform);
+                Instantiate(corridorToSpawn, transform.position, spawnRotation, transform);
                 break;
             case Direction.East:
-                Instantiate(corridorToSpawn, transform.position, Quaternion.Euler(0f, 90f + transform.parent.eulerAngles.y, 0f), transform);
+                Instantiate(corridorToSpawn, transform.position, spawnRotation, transform);
                 break;
             case Direction.West:
-                Instantiate(corridorToSpawn, transform.position, Quaternion.Euler(0f, -90f + transform.parent.eulerAngles.y, 0f), transform);
+                Instantiate(corridorToSpawn, transform.position, spawnRotation, transform);
                 break;
         }
     }
 
-    bool CanSpawn(GameObject obj, Vector3 pos, Quaternion rot, LayerMask hitLayerMask)
+    bool CanSpawn(GameObject corridorToSpawn, Vector3 pos, Quaternion rot, LayerMask corridorLayer)
     {
-        MeshCollider meshCollider = obj.transform.GetChild(0).GetComponent<MeshCollider>();
+        BoxCollider box = corridorToSpawn.GetComponent<BoxCollider>();
+        gizmoSize = box.size;
 
-        Vector3 localOffset = meshCollider.transform.localPosition;
-        Vector3 worldCenter = pos + rot * localOffset;
+        checkPosition = transform.position + spawnRotation * box.center;
+        Instantiate(debugCube, checkPosition, Quaternion.identity);
 
-        Bounds meshBounds = meshCollider.sharedMesh.bounds;
-        Vector3 scaleSize = Vector3.Scale(meshBounds.size, meshCollider.transform.lossyScale);
-
-        Collider[] hits = Physics.OverlapBox(worldCenter + rot * meshBounds.center, scaleSize / 2f, rot, hitLayerMask);
-
-        foreach (Collider hit in hits)
-        {
-            if (hit.transform.IsChildOf(transform.parent))
-                continue;
-
-            Debug.Log("Hit: " + hit.name);
-            return false;
-        }
+        Collider[] hits = Physics.OverlapBox(checkPosition, gizmoSize / 2f, spawnRotation, corridorLayer);
 
         return true;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        //Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.matrix = Matrix4x4.TRS(checkPosition, spawnRotation, Vector3.one);
+        Gizmos.DrawWireCube(checkPosition, gizmoSize);
     }
 }

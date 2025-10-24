@@ -44,11 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0613ca00528221c429d71a418a2d0f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorridorSpawnpoint
+  debugCube: {fileID: 8457908339704613387, guid: 49475ee1f89d0a9469fe18aefd1e54a9, type: 3}
+  debugCubeSpawnpoint: {fileID: 1234284423866854905, guid: 158783d2f6e7ba3489fc90ed45cfa514, type: 3}
   direction: 0
   corridorPrefabs:
   - {fileID: 6763767553598077473, guid: 363fb94d5aab6e5448a81ca9de823a63, type: 3}
   - {fileID: 927393665979856278, guid: 875e07d4e51ad22409d42761310bec3b, type: 3}
   - {fileID: 6414711810944640929, guid: 2ec296791e798084e8a92f57fb5e25a4, type: 3}
+  - {fileID: 8551033087083857694, guid: 8c39723d0ca1eec46a44519ee47840aa, type: 3}
+  - {fileID: 3194556305609689641, guid: f1ef541e41523744da2b93a20a40be6b, type: 3}
+  - {fileID: 5396621409285231747, guid: ee977cdb23f17184fb19cc5aad10a247, type: 3}
+  - {fileID: 8548902305824179884, guid: 03939621aa0d7554494ee68e40ff5fda, type: 3}
   - {fileID: 2735074588583044231, guid: 7d502a5e63221bb428142dc0dbdd73d5, type: 3}
   - {fileID: 4516602149217566585, guid: c6e84bcba77ae124a80de9eac907a18f, type: 3}
   - {fileID: 144468483674338290, guid: f53d51ecb56da254788fa903c615a7ec, type: 3}
@@ -58,12 +64,4 @@ MonoBehaviour:
   - {fileID: 9051573207147964787, guid: fa2e0735a66ad7548a636b222f4dcffa, type: 3}
   - {fileID: 5662230855077865374, guid: edf8109c56c1d1147a3cb130faa8d7eb, type: 3}
   - {fileID: 6839831172404522400, guid: 6f05c45b0dbcfc543b7faf9a4bc8beda, type: 3}
-  - {fileID: 6763767553598077473, guid: 363fb94d5aab6e5448a81ca9de823a63, type: 3}
-  - {fileID: 927393665979856278, guid: 875e07d4e51ad22409d42761310bec3b, type: 3}
-  - {fileID: 6414711810944640929, guid: 2ec296791e798084e8a92f57fb5e25a4, type: 3}
-  - {fileID: 2735074588583044231, guid: 7d502a5e63221bb428142dc0dbdd73d5, type: 3}
-  - {fileID: 4516602149217566585, guid: c6e84bcba77ae124a80de9eac907a18f, type: 3}
-  - {fileID: 144468483674338290, guid: f53d51ecb56da254788fa903c615a7ec, type: 3}
-  - {fileID: 3870804241512827213, guid: 487d353f7df3a3144b0df3905c0e0425, type: 3}
-  - {fileID: 4783088835113505272, guid: 9e37d9c46c06f794686c424ebd4f2162, type: 3}
   deadEndPrefab: {fileID: 3261994512523100364, guid: 641654fdc0e04f0419bb24dfdd3c4a6a, type: 3}

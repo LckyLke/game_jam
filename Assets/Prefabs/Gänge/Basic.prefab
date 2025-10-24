@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1292635516711768225}
+  - component: {fileID: 5095678669646561728}
   m_Layer: 3
   m_Name: Basic
   m_TagString: Untagged
@@ -34,6 +35,27 @@ Transform:
   - {fileID: 3232085209699922193}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5095678669646561728
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6763767553598077473}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.13, y: 5.65, z: 12}
+  m_Center: {x: 0, y: 3.5, z: -6}
 --- !u!1 &7895692399097596486
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +298,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6763767553598077473}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[5]'
       value: 
       objectReference: {fileID: 6763767553598077473}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
