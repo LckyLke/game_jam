@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.13, y: 5.65, z: 12}
-  m_Center: {x: 0, y: 3.5, z: -6}
+  m_Size: {x: 9, y: 6, z: 12}
+  m_Center: {x: 0, y: 3.25, z: -6}
 --- !u!1 &7895692399097596486
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +306,10 @@ PrefabInstance:
       objectReference: {fileID: 6763767553598077473}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[16]'
+      value: 
+      objectReference: {fileID: 6763767553598077473}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[17]'
       value: 
       objectReference: {fileID: 6763767553598077473}
     m_RemovedComponents: []

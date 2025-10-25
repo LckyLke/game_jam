@@ -55,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.67, y: 6.5, z: 12}
-  m_Center: {x: 0.7, y: 3, z: -6}
+  m_Size: {x: 10.5, y: 6, z: 12}
+  m_Center: {x: 0.7, y: 3.25, z: -6}
 --- !u!1 &8775706943229499416
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,7 +286,15 @@ PrefabInstance:
       value: Spawnpoint
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'crossings.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1768579672020405871}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[12]'
+      value: 
+      objectReference: {fileID: 1768579672020405871}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[15]'
       value: 
       objectReference: {fileID: 1768579672020405871}
     m_RemovedComponents: []
@@ -356,7 +364,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'crossings.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1768579672020405871}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
       propertyPath: 'corridorPrefabs.Array.data[12]'
+      value: 
+      objectReference: {fileID: 1768579672020405871}
+    - target: {fileID: 8623480254452685864, guid: 95b078cd81011a940ada3c59f6a91b2c, type: 3}
+      propertyPath: 'corridorPrefabs.Array.data[15]'
       value: 
       objectReference: {fileID: 1768579672020405871}
     m_RemovedComponents: []

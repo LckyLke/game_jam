@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0613ca00528221c429d71a418a2d0f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorridorSpawnpoint
+  hasSpawned: 0
+  wallPrefab: {fileID: 5839013353331652936, guid: 475406980b276ea409e4092a7aeaa580, type: 3}
+  deadEndPrefab: {fileID: 3261994512523100364, guid: 641654fdc0e04f0419bb24dfdd3c4a6a, type: 3}
   debugCube: {fileID: 8457908339704613387, guid: 49475ee1f89d0a9469fe18aefd1e54a9, type: 3}
-  debugCubeSpawnpoint: {fileID: 1234284423866854905, guid: 158783d2f6e7ba3489fc90ed45cfa514, type: 3}
   direction: 0
   corridorPrefabs:
   - {fileID: 6763767553598077473, guid: 363fb94d5aab6e5448a81ca9de823a63, type: 3}
@@ -64,4 +66,10 @@ MonoBehaviour:
   - {fileID: 9051573207147964787, guid: fa2e0735a66ad7548a636b222f4dcffa, type: 3}
   - {fileID: 5662230855077865374, guid: edf8109c56c1d1147a3cb130faa8d7eb, type: 3}
   - {fileID: 6839831172404522400, guid: 6f05c45b0dbcfc543b7faf9a4bc8beda, type: 3}
-  deadEndPrefab: {fileID: 3261994512523100364, guid: 641654fdc0e04f0419bb24dfdd3c4a6a, type: 3}
+  - {fileID: 6763767553598077473, guid: 363fb94d5aab6e5448a81ca9de823a63, type: 3}
+  - {fileID: 6763767553598077473, guid: 363fb94d5aab6e5448a81ca9de823a63, type: 3}
+  crossings:
+  - {fileID: 1768579672020405871, guid: 32c2da098a53e5940b090b36a2073089, type: 3}
+  - {fileID: 9051573207147964787, guid: fa2e0735a66ad7548a636b222f4dcffa, type: 3}
+  - {fileID: 5662230855077865374, guid: edf8109c56c1d1147a3cb130faa8d7eb, type: 3}
+  - {fileID: 6839831172404522400, guid: 6f05c45b0dbcfc543b7faf9a4bc8beda, type: 3}
