@@ -63,7 +63,7 @@ public class MapGenerator : MonoBehaviour
                     var s = f.GetChild(i);
                     if (s.CompareTag("ItemSpawnpoint"))
                     {
-                        Instantiate(debugCube, s.position, s.rotation);
+                        Instantiate(debugCube, s.position, s.rotation, s.parent);
                     }
                 }
                 
