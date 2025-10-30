@@ -4,14 +4,12 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] private Camera playerCam;
-    [SerializeField] private float radius = 0f;
+    [SerializeField] private float radius;
     Rigidbody m_Rigidbody;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        
+    {        
     }
 
     // Update is called once per frame
@@ -22,16 +20,28 @@ public class Movement : MonoBehaviour
 
 
         //Debug.Log(cameraPos + "Camera");
-        UnityEngine.Vector3 spiderPos = GameObject.Find("Spider").transform.position;
+        UnityEngine.Vector3 spiderPos = transform.position;
 
         float distance = UnityEngine.Vector3.Distance(cameraPos, spiderPos);
         UnityEngine.Vector3 newVector = cameraPos - spiderPos;
         newVector.y = 0;
         //Debug.Log("newV" + newVector);
         //transform.Translate(newVector * Time.deltaTime);
+        UnityEngine.Vector3 playerXY = new UnityEngine.Vector3(cameraPos.x, 1, cameraPos.z);
+        transform.LookAt(playerXY);
+
+        var qTo = UnityEngine.Quaternion.LookRotation(cameraPos - transform.position);
+        qTo = UnityEngine.Quaternion.Slerp(transform.rotation, qTo, 10 * Time.deltaTime);
+        GetComponent<Rigidbody>().MoveRotation(qTo);
+
+
+
+        Debug.Log(distance);
         if (distance > radius){
         transform.Translate(newVector * Time.deltaTime);
+        
             }
+       
         //transform.Translate(UnityEngine.Vector3.down * verticalVelocity);
     }
     
