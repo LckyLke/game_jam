@@ -51,25 +51,28 @@ public class MapGenerator : MonoBehaviour
 
             Debug.Log("Corridor generation finished.");
             corridorsFinished = true;
-            Debug.Log("Children Count" + CountChildren(corridorContainer));
-
+            LinkedList<Transform> children = GetCorridorList(corridorContainer);
+            Debug.Log("Children Count" + children.Count);
+            
 
 
         }
     }
 
-    public int CountChildren(Transform a)
+    public LinkedList<Transform> GetCorridorList(Transform firstSpawn)
     {
-        int childCount = 0;
-        foreach (Transform b in a)
+        LinkedList<Transform> corridorObjets = new LinkedList<Transform>();
+        foreach (Transform child in firstSpawn)
         {
-            if(b.gameObject.layer == 3) { 
-            Debug.Log("Child: " + b);
-            childCount++;
-            childCount += CountChildren(b);
+            if(child.gameObject.layer == 3 && child.gameObject.tag == "Corridor" ) { 
+            Debug.Log("Child: " + child);
+                corridorObjets.AddLast(child);
+            
             }
+            foreach(var c in GetCorridorList(child))
+            corridorObjets.AddLast(c);
         }
-        return childCount;
+        return corridorObjets;
     }
 
 
