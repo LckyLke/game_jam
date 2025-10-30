@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -17,6 +18,7 @@ public class MapGenerator : MonoBehaviour
     public Transform deadEndContainer;
     [SerializeField] GameObject spawnpointPrefab;
     [SerializeField] float spawnDelay = 0.5f;
+    [SerializeField] GameObject debugCube;
 
     void Start()
     {
@@ -53,6 +55,19 @@ public class MapGenerator : MonoBehaviour
             corridorsFinished = true;
             LinkedList<Transform> children = GetCorridorList(corridorContainer);
             Debug.Log("Children Count" + children.Count);
+            //test item spawn with debugCube
+            foreach(Transform f in children)
+            {
+                for(int i = 0; i < f.childCount; i++)
+                {
+                    var s = f.GetChild(i);
+                    if (s.CompareTag("ItemSpawnpoint"))
+                    {
+                        Instantiate(debugCube, s.position, s.rotation);
+                    }
+                }
+                
+            }
             
 
 
