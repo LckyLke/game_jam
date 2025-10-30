@@ -28,19 +28,18 @@ public class Movement : MonoBehaviour
         //Debug.Log("newV" + newVector);
         //transform.Translate(newVector * Time.deltaTime);
         UnityEngine.Vector3 playerXY = new UnityEngine.Vector3(cameraPos.x, 1, cameraPos.z);
-        transform.LookAt(playerXY);
-
-        var qTo = UnityEngine.Quaternion.LookRotation(cameraPos - transform.position);
-        qTo = UnityEngine.Quaternion.Slerp(transform.rotation, qTo, 10 * Time.deltaTime);
-        GetComponent<Rigidbody>().MoveRotation(qTo);
+        
 
 
 
-        Debug.Log(distance);
+
+        Debug.Log(distance > radius);
         if (distance > radius){
         transform.Translate(newVector * Time.deltaTime);
-        
-            }
+            var qTo = UnityEngine.Quaternion.LookRotation(playerXY - transform.position);
+            qTo = UnityEngine.Quaternion.Slerp(transform.rotation, qTo, 10 * Time.deltaTime);
+            GetComponent<Rigidbody>().MoveRotation(qTo);
+        }
        
         //transform.Translate(UnityEngine.Vector3.down * verticalVelocity);
     }
