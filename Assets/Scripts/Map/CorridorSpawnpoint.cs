@@ -179,8 +179,8 @@ public class CorridorSpawnpoint : MonoBehaviour
             Instantiate(debugCube, transform.position, Quaternion.identity, transform);
             return;
         }
-
-        Instantiate(corridorToSpawn, transform.position, spawnRotation, transform);
+        var inst_corr = Instantiate(corridorToSpawn, transform.position, spawnRotation, transform) as GameObject;
+        inst_corr.tag = "Corridor";
         hasSpawned = true;
         generator.corridorCount++;
 

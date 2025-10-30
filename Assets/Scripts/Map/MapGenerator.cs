@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    bool corridorsFinished = false;
+    public bool corridorsFinished = false;
     public Queue<CorridorSpawnpoint> spawnQueue = new Queue<CorridorSpawnpoint>();
 
     public int corridorCount = 0;
@@ -37,8 +37,7 @@ public class MapGenerator : MonoBehaviour
 
         if(corridorCount >= maxCorridors && !corridorsFinished && spawnQueue.Count < 1)
         {
-            Debug.Log("Corridor generation finished.");
-            corridorsFinished = true;
+            
 
             if(deadEndContainer.childCount < 5)
             {
@@ -49,8 +48,31 @@ public class MapGenerator : MonoBehaviour
             {
                 Debug.Log("Corridors generation successful. --> Start generation rooms...");
             }
+
+            Debug.Log("Corridor generation finished.");
+            corridorsFinished = true;
+            Debug.Log("Children Count" + CountChildren(corridorContainer));
+
+
+
         }
     }
+
+    public int CountChildren(Transform a)
+    {
+        int childCount = 0;
+        foreach (Transform b in a)
+        {
+            if(b.gameObject.layer == 3) { 
+            Debug.Log("Child: " + b);
+            childCount++;
+            childCount += CountChildren(b);
+            }
+        }
+        return childCount;
+    }
+
+
 
     public void StartMapGeneration()
     {
@@ -71,9 +93,10 @@ public class MapGenerator : MonoBehaviour
         corridorCount = 0;
         activeSpawnPointCount = 0;
         backtrack = 0;
-
+        
         //start new generation
         Instantiate(spawnpointPrefab, Vector3.zero, Quaternion.identity, corridorContainer);
+ 
     }
 
     IEnumerator ProcessNextSpawnpoint()
@@ -82,7 +105,11 @@ public class MapGenerator : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         if (spawnQueue.Count > 0)
-            spawnQueue.Dequeue().Place();
+        {
+            CorridorSpawnpoint spawnpointObject = spawnQueue.Dequeue();
+            spawnpointObject.tag = "SpawnPoint";
+            spawnpointObject.Place();
+        }
 
         yield return new WaitForSeconds(spawnDelay);
     }
