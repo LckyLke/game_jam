@@ -124,9 +124,13 @@ public class MapGenerator : MonoBehaviour
 
         if (spawnQueue.Count > 0)
         {
+
+           
             CorridorSpawnpoint spawnpointObject = spawnQueue.Dequeue();
+            if(spawnpointObject != null) { 
             spawnpointObject.tag = "SpawnPoint";
             spawnpointObject.Place();
+            }
         }
 
         yield return new WaitForSeconds(spawnDelay);
