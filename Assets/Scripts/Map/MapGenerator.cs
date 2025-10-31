@@ -1,7 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Metadata;
+using spawnUsed;
+using System;
+public enum Tags
+{
+    ItemSpawnpoint
+}
 
 public class MapGenerator : MonoBehaviour
 {
@@ -53,26 +61,78 @@ public class MapGenerator : MonoBehaviour
 
             Debug.Log("Corridor generation finished.");
             corridorsFinished = true;
+            AddScripttoSpawns();
+
+            
             LinkedList<Transform> children = GetCorridorList(corridorContainer);
             Debug.Log("Children Count" + children.Count);
             //test item spawn with debugCube
             foreach(Transform f in children)
             {
-                for(int i = 0; i < f.childCount; i++)
-                {
-                    var s = f.GetChild(i);
-                    if (s.CompareTag("ItemSpawnpoint"))
-                    {
-                        Instantiate(debugCube, s.position, s.rotation, s.parent);
-                    }
-                }
-                
+                spawnObject("ItemSpawnpoint", debugCube, f);
             }
-            
+
 
 
         }
     }
+
+    public void AddScripttoSpawns()
+    {
+        
+        LinkedList<Transform> children = GetCorridorList(corridorContainer);
+        foreach(Transform f in children)
+        {
+            foreach (Tags t in Enum.GetValues(typeof(Tags)))
+            {
+              for (int i = 0; i < f.childCount; i++)
+                {
+                    var s = f.GetChild(i);
+                    if (s.CompareTag(t.ToString()))
+                    {
+                        s.AddComponent<SpawnpointUsed>();     
+                    }
+                }
+
+            }
+        }
+
+    }
+
+
+
+    public GameObject spawnObject(string tag, GameObject objectToSpawn, Transform corridor)
+    {
+        LinkedList<Transform> itemspawns = new LinkedList<Transform>();
+        for (int i = 0; i < corridor.childCount; i++)
+        {
+            var s = corridor.GetChild(i);
+            if (s.CompareTag(tag))
+            {
+                itemspawns.AddLast(s);
+            }
+        }
+
+        var ispawn = itemspawns.ElementAt(UnityEngine.Random.Range(0, itemspawns.Count));
+        return Instantiate(objectToSpawn, ispawn.position, ispawn.rotation, ispawn.parent);
+    }
+
+    public GameObject spawnObject(string tag, GameObject objectToSpawn, Transform corridor, Quaternion rotation)
+    {
+        LinkedList<Transform> itemspawns = new LinkedList<Transform>();
+        for (int i = 0; i < corridor.childCount; i++)
+        {
+            var s = corridor.GetChild(i);
+            if (s.CompareTag(tag))
+            {
+                itemspawns.AddLast(s);
+            }
+        }
+
+        var ispawn = itemspawns.ElementAt(UnityEngine.Random.Range(0, itemspawns.Count));
+        return Instantiate(objectToSpawn, ispawn.position, rotation, ispawn.parent);
+    }
+
 
     public LinkedList<Transform> GetCorridorList(Transform firstSpawn)
     {
